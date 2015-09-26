@@ -59,13 +59,14 @@ def data_fid(url):
 
 
 if __name__ == '__main__':
-    username = "xxxx"
-    password = "xxxx"
+    username = "xxxx" #你的帐号
+    password = "xxxx" #你的密码
     home_url = 'http://tieba.baidu.com/home/main?un=%s&fr=index' % username
     result = data_fid(home_url)
-    for r in result:
-        fid = ','.join(r['fid'])
-        kw = ','.join(r['kw'])
+    # x = 0
+    for i in range(len(result[0]['kw'])):
+        kw = (result[0]['kw'][i])
+        fid = (result[0]['fid'][i])
 
         Header = {
             'User-Agent': 'BaiduTieba for Android 6.0.1',
@@ -92,5 +93,3 @@ if __name__ == '__main__':
 
         sign_response = requests.post(sign_url, data=postdata, headers=Header)
         print sign_response.content
-
-
